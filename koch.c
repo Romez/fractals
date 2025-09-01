@@ -5,8 +5,6 @@
 int screenWidth = 1600;
 int screenHeight = 1200;
 
-
-
 void draw_koch(int depth, Vector2 pt1, float angle, float len) {
     if (depth == 0) {
         Vector2 pt2 = (Vector2) {
@@ -39,19 +37,35 @@ void draw_koch(int depth, Vector2 pt1, float angle, float len) {
 }
 
 int main () {
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+
     InitWindow(screenWidth, screenHeight, "Koch");
 
     SetTargetFPS(1);
 
-    float len = 1200;
-    Vector2 pt1 = (Vector2){.x = 200, .y = 600};
+    float len = screenWidth - 400;
+    Vector2 pt1 = (Vector2){
+        .x = 200,
+        .y = screenHeight / 2,
+    };
 
     while (!WindowShouldClose()) {
+        if (IsWindowResized()) {
+            screenWidth = GetScreenWidth();
+            screenHeight = GetScreenHeight();
+
+            len = screenWidth - 400;
+            pt1 = (Vector2){
+                .x = 200,
+                .y = screenHeight / 2,
+            };
+		}
+
         BeginDrawing();
 
         ClearBackground(BLACK);
 
-        draw_koch(4, pt1, 0, len);  
+        draw_koch(10, pt1, 0, len);  
 
         EndDrawing();
     }
