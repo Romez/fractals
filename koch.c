@@ -12,7 +12,7 @@ void draw_koch(int depth, Vector2 pt1, float angle, float len) {
             .y = pt1.y + len * sinf(angle),
         };
 
-        DrawLineV(pt1, pt2, WHITE);
+        DrawLineV(pt1, pt2, (Color){ 224, 255, 79, 255});
     } else {
         Vector2 pt2 = (Vector2) {
             .x = pt1.x + (len / 3) * cosf(angle),
@@ -43,10 +43,10 @@ int main () {
 
     SetTargetFPS(1);
 
-    float len = screenWidth - 400;
+    float len = screenWidth - 10;
     Vector2 pt1 = (Vector2){
-        .x = 200,
-        .y = screenHeight / 2,
+        .x = 10,
+        .y = screenHeight / 1.5,
     };
 
     while (!WindowShouldClose()) {
@@ -54,10 +54,10 @@ int main () {
             screenWidth = GetScreenWidth();
             screenHeight = GetScreenHeight();
 
-            len = screenWidth - 400;
+            len = screenWidth - 20;
             pt1 = (Vector2){
-                .x = 200,
-                .y = screenHeight / 2,
+                .x = 10,
+                .y = screenHeight / 1.5,
             };
 		}
 
@@ -65,7 +65,7 @@ int main () {
 
         ClearBackground(BLACK);
 
-        draw_koch(10, pt1, 0, len);  
+        draw_koch(4, pt1, 0, len);  
 
         EndDrawing();
     }
