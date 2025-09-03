@@ -39,10 +39,18 @@ int main () {
 
     SetTargetFPS(3);
 
-    float len = screen_width - 10;
-    Vector2 pt1 = (Vector2){
+    float pt1_len = screen_width - 10;
+    float pt1_angle = 0;
+    Vector2 pt1 = (Vector2) {
         .x = 10,
         .y = screen_height / 1.5,
+    };
+
+    float pt2_len = pt1_len;
+    float pt2_angle = 2 * PI / 3;
+    Vector2 pt2 = (Vector2) {
+        .x = pt1.x + pt1_len * cosf(pt1_angle),
+        .y = pt1.y + pt1_len * sinf(pt1_angle),
     };
 
     while (!WindowShouldClose()) {
@@ -50,7 +58,7 @@ int main () {
             screen_width = GetScreenWidth();
             screen_height = GetScreenHeight();
 
-            len = screen_width - 20;
+            pt1_len = screen_width - 20;
             pt1 = (Vector2){
                 .x = 10,
                 .y = screen_height / 1.5,
@@ -61,7 +69,8 @@ int main () {
 
         ClearBackground(BLACK);
 
-        draw_koch(4, pt1, 0, len);  
+        draw_koch(0, pt1, pt1_angle, pt1_len);
+        draw_koch(0, pt2, pt2_angle, pt2_len);  
 
         EndDrawing();
     }
